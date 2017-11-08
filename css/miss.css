@@ -25,7 +25,7 @@ body {
   top: 0;
   left: 0;
   background: #fe5757;
-  animation: colorChange 30s ease-in-out infinite;
+  animation: colorChange 5s ease-in-out infinite;
   animation-fill-mode: both;
   mix-blend-mode: overlay;
 }
@@ -45,7 +45,7 @@ body {
     opacity: 0;
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.8;
   }
 }
 @-webkit-keyframes colorChange {
@@ -53,7 +53,7 @@ body {
     opacity: 0;
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.8;
   }
 }
 @-o-keyframes colorChange {
@@ -61,7 +61,7 @@ body {
     opacity: 0;
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.8;
   }
 }
 @keyframes colorChange {
@@ -69,6 +69,6 @@ body {
     opacity: 0;
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.8;
   }
 }
