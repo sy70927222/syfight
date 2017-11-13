@@ -46,7 +46,7 @@ a {
   color: #0cf;
 }
 a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 .alignleft {
   float: left;
@@ -75,7 +75,7 @@ a:hover {
   }
 }
 #main-col {
-  width: 900px;
+  width: 100%;
 }
 @media screen and (max-width: 1260px) {
   #main-col {
@@ -91,12 +91,12 @@ a:hover {
 }
 @media screen and (max-width: 1260px) {
   #wrapper {
-    margin-right: 300px;
+    margin-left: 300px;
   }
 }
 @media screen and (max-width: 900px) {
   #wrapper {
-    margin-right: 0;
+    margin-left: 0;
   }
 }
 #bg {
@@ -590,13 +590,14 @@ article footer .addthis iframe {
   margin-bottom: 0;
 }
 #sidebar {
-  width: 270px;
   line-height: 1.8em;
+  position: fixed;
+  height: 100%;
 }
 @media screen and (max-width: 900px) {
   #sidebar {
-    float: none;
-    width: 100%;
+    left: -270px;
+    z-index: 20;
   }
 }
 #sidebar .widget {

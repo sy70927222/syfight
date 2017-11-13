@@ -1,3 +1,4 @@
+var flag=true;
 function Star(id, x, y){
     this.id = id;
     this.x = x;
@@ -111,6 +112,9 @@ setCanvasSize();
 init();
 
 function setCanvasSize() {
+    if(WIDTH>=900){
+        flag=false;
+    }
     WIDTH = document.documentElement.clientWidth,
         HEIGHT = document.documentElement.clientHeight;
     canvas.setAttribute("width", WIDTH);
@@ -185,3 +189,17 @@ function drawIfMouseMoving(){
 function degToRad(deg) {
     return deg * (Math.PI / 180);
 }
+
+window.onresize = function(){
+    setCanvasSize();
+}
+$("#link").on("click",function(){
+    $("#link").css("display","none");
+    $("#mask").addClass("in");
+    $("#sidebar").css("left","0px");
+});
+$("#mask").on("click",function(){
+    $("#mask").removeClass("in");
+    $("#sidebar").css("left","-270px");
+    $("#link").css("display","block");
+});

@@ -28,9 +28,9 @@
 
   <link rel="alternate" href="/syfight/atom.xml" title="顾里°" type="application/atom+xml">
   <link rel="stylesheet" href="/syfight/css/style.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/syfight/css/miss.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/syfight/layui/css/layui.css" media="screen" type="text/css">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
-  
-
 
 
 </head>
@@ -38,6 +38,25 @@
 
 <body>
 <div id="con">
+  <aside id="sidebar" class="site-tree">
+  <div id="head">
+
+</div>
+
+  <ul id="nav" class="layui-nav layui-nav-tree layui-bg-cyan layui-inline" lay-filter="demo">
+    <li class="layui-nav-item">
+        <a href="/syfight"><i class="layui-icon">&#xe68e;</i>首页</a>
+    </li>
+    <li class="layui-nav-item">
+        <a href="/syfight/archives"><i class="layui-icon">&#xe622;</i>档案</a>
+    </li>
+    <li class="layui-nav-item">
+        <a href="/syfight/images"><i class="layui-icon">&#xe60d;</i>相册</a>
+    </li>
+</ul>
+
+
+</aside>
   <header id="header" class="inner"><div class="alignleft">
   <h1><a href="/syfight/">顾里°</a></h1>
   <h2><a href="/syfight/"></a></h2>
@@ -54,11 +73,23 @@
 </nav>
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
-    <div id="main-col" class="alignleft"><div id="wrapper">
+    <div id="main-col" class="site-content"><div id="wrapper">
 <h2 class="archive-title">2017</h2>
 
 
   <div class="archive">
+    
+      <article class="post">
+        <div class="post-content">
+          <header>
+            <div class="icon"></div>
+            <time datetime="2017-11-13T02:02:00.000Z"><a href="/syfight/2017/11/13/游呗之旅新手帮助/">2017-11-13</a></time>
+            
+              <h1 class="title"><a href="/syfight/2017/11/13/游呗之旅新手帮助/">游呗之旅新手帮助</a></h1>
+            
+          </header>
+        </div>
+      </article>
     
       <article class="post">
         <div class="post-content">
@@ -74,58 +105,6 @@
     
   </div>
 </div></div>
-    <aside id="sidebar" class="alignright">
-  <div class="search">
-  <form action="//google.com/search" method="get" accept-charset="utf-8">
-    <input type="search" name="q" results="0" placeholder="搜索">
-    <input type="hidden" name="q" value="site:sy70927222.github.io/syfight">
-  </form>
-</div>
-
-  
-<div class="widget tag">
-  <h3 class="title">分类</h3>
-  <ul class="entry">
-  
-    <li><a href="/syfight/categories/java/">java</a><small>1</small></li>
-  
-  </ul>
-</div>
-
-
-  
-<div class="widget tag">
-  <h3 class="title">最新文章</h3>
-  <ul class="entry">
-    
-      <li>
-        <a href="/syfight/2017/11/08/abc/">java20个有用的程序片段</a>
-      </li>
-    
-  </ul>
-</div>
-
-
-  
-<div class="widget tag">
-  <h3 class="title">标签</h3>
-  <ul class="entry">
-  
-    <li><a href="/syfight/tags/java/">java</a><small>1</small></li>
-  
-  </ul>
-</div>
-
-
-  
-<div class="widget tagcloud">
-  <h3 class="title">标签云</h3>
-  <div class="entry">
-    <a href="/syfight/tags/java/" style="font-size: 10px;">java</a>
-  </div>
-</div>
-
-</aside>
     <div class="clearfix"></div>
   </div>
   <footer id="footer" class="inner"><div class="alignleft">
@@ -147,7 +126,6 @@
 
 
 <link rel="stylesheet" href="/syfight/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<link rel="stylesheet" href="/syfight/css/miss.css" media="screen" type="text/css">
 <script type="text/javascript">
 (function($){
   $('.fancybox').fancybox();
@@ -157,7 +135,12 @@
 
 <!--<div id='bg'></div>-->
 <div class="landscape"></div>
-<div class="filter"></div>
+<div class="filter">
+
+</div><div id="link" class="site-tree-mobile layui-hide">
+  <i class="layui-icon"></i>
+</div>
+<div class="mask" id="mask"></div>
 <canvas id="canvas" style="position: fixed;top:0;left:0px;"></canvas>
 
 <script src="/syfight/js/miss.js"></script>
