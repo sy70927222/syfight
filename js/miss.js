@@ -121,6 +121,11 @@ function setCanvasSize() {
     canvas.setAttribute("height", HEIGHT);
     $('#con').css('width',WIDTH);
     $('#con').css('height',HEIGHT);
+    if(WIDTH>900){
+        $("#sidebar").css("left","0px");
+    }else{
+        $("#sidebar").css("left","");
+    }
 }
 
 function init() {
@@ -193,13 +198,4 @@ function degToRad(deg) {
 window.onresize = function(){
     setCanvasSize();
 }
-$("#link").on("click",function(){
-    $("#link").css("display","none");
-    $("#mask").addClass("in");
-    $("#sidebar").css("left","0px");
-});
-$("#mask").on("click",function(){
-    $("#mask").removeClass("in");
-    $("#sidebar").css("left","-270px");
-    $("#link").css("display","block");
-});
+

@@ -85,6 +85,9 @@ body {
   visibility: visible;
   background: rgba(0,0,0,0.3);
 }
+figure.highlight .line {
+  height: auto;
+}
 @media screen and (max-width: 900px) {
   #link {
     display: block;
@@ -100,6 +103,10 @@ body {
     background-color: rgba(0,0,0,0.5);
     color: #fff;
   }
+}
+#down {
+  display: list-item;
+  transform: rotate(180deg);
 }
 @-moz-keyframes colorChange {
   0%, 100% {
