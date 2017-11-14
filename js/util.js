@@ -16,26 +16,20 @@ $(function(){
         $( "#con").animate({ "scrollTop" : 0 }, 1000);
     });
     //回到底部
-    var windowHeight = parseInt($("#wrapper").css("height" ));//整个页面的高度
     $( "#down").click(function () {
         $( "#con").animate({ "scrollTop" : windowHeight }, 1000);
     });
     //滚动监控
     $("#con").scroll(function() {
-        var windowHeight = parseInt($("#wrapper").css("height"));//整个页面的高度
         var scrollTop=$("#con").scrollTop();
         if(scrollTop>100){
-            // $("#top").css("display","list-item");
             $("#top").fadeIn(1000);
         }else{
-            // $("#top").css("display","");
             $("#top").fadeOut(1000);
         }
         if(scrollTop>windowHeight-1000){
-            // $("#down").css("display","none");
             $("#down").fadeOut(1000);
         }else{
-            // $("#down").css("display","list-item");
             $("#down").fadeIn(1000);
         }
     });

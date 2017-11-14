@@ -195,7 +195,9 @@ function degToRad(deg) {
     return deg * (Math.PI / 180);
 }
 
+var windowHeight=parseInt($("#wrapper").css("height"));
 window.onresize = function(){
     setCanvasSize();
+    windowHeight=parseInt($("#wrapper").css("height"));
 }
 
