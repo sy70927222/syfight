@@ -1,4 +1,5 @@
 var flag=true;
+var windowHeight=parseInt($("#wrapper").css("height"));
 function Star(id, x, y){
     this.id = id;
     this.x = x;
@@ -126,6 +127,11 @@ function setCanvasSize() {
     }else{
         $("#sidebar").css("left","");
     }
+    if(WIDTH>windowHeight){
+        $("#down").css("display","none");
+    }else{
+        $("#down").css("display","");
+    }
 }
 
 function init() {
@@ -195,7 +201,6 @@ function degToRad(deg) {
     return deg * (Math.PI / 180);
 }
 
-var windowHeight=parseInt($("#wrapper").css("height"));
 window.onresize = function(){
     setCanvasSize();
     windowHeight=parseInt($("#wrapper").css("height"));
