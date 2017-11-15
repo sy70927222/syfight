@@ -1,5 +1,17 @@
 $(function(){
     //导航
+    $(".is").on("click",function(){
+        var res=$(".is").hasClass('open');
+        if(res){
+            $(".is").removeClass('open');
+            $("#sidebar").css("left","-270px");
+            $(".is").css('left',"15px");
+        }else{
+            $(".is").addClass('open');
+            $("#sidebar").css("left","0px");
+            $(".is").css('left',"");
+        }
+    });
     $("#link").on("click",function(){
         $("#link").css("display","none");
         $("#mask").addClass("in");

@@ -567,7 +567,7 @@ article footer .addthis iframe {
 }
 .archive-title:before {
   font-family: FontAwesome;
-  content: '\f073';
+  content: '\f072';
   padding-right: 15px;
 }
 .archive-title.tag:before {

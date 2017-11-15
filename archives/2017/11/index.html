@@ -38,7 +38,12 @@
 
 <body>
 <aside id="sidebar" class="site-tree">
-  <div id="head">
+  <div class="is open">
+    <div class="li x"></div>
+    <div class="li y"></div>
+    <div class="li z"></div>
+</div>
+<div id="head">
     <div class="layui-inline" style="display: block">
         <img width="70" height="70" src="/syfight/images/head/1.gif" class="layui-circle">
     </div>
@@ -50,7 +55,7 @@
         <a href="/syfight"><i class="layui-icon">&#xe68e;</i>首页</a>
     </li>
     <li class="layui-nav-item">
-        <a href="/syfight/archives"><i class="layui-icon">&#xe622;</i>档案</a>
+        <a href="/syfight/archives"><i class="layui-icon">&#xe622;</i>大事记</a>
     </li>
     <li class="layui-nav-item">
         <a href="/syfight/images"><i class="layui-icon">&#xe60d;</i>相册</a>
@@ -69,7 +74,7 @@
     
       <li><a href="/syfight">首页</a></li>
     
-      <li><a href="/syfight/archives">档案</a></li>
+      <li><a href="/syfight/archives">大事记</a></li>
     
   </ul>
   <div class="clearfix"></div>
@@ -77,35 +82,49 @@
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="site-content"><div id="wrapper">
-<h2 class="archive-title">2017/11</h2>
+<h2 class="archive-title">大事记</h2>
 
 
   <div class="archive">
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2017-11-13T02:02:00.000Z"><a href="/syfight/2017/11/13/游呗之旅新手帮助/">2017-11-13</a></time>
-            
-              <h1 class="title"><a href="/syfight/2017/11/13/游呗之旅新手帮助/">游呗之旅新手帮助</a></h1>
-            
-          </header>
+    <ul class="layui-timeline" style="padding-top: 10px;padding-left: 10px;">
+      <li class="layui-timeline-item">
+        <i class="layui-icon layui-timeline-axis">&#xe756;</i>
+        <div class="layui-timeline-content layui-text">
+          <div class="layui-timeline-title" style="color:#fff">将来...</div>
         </div>
-      </article>
+      </li>
     
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2017-11-08T02:48:00.000Z"><a href="/syfight/2017/11/08/abc/">2017-11-08</a></time>
-            
-              <h1 class="title"><a href="/syfight/2017/11/08/abc/">java20个有用的程序片段</a></h1>
-            
-          </header>
+      <li class="layui-timeline-item">
+        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+        <div class="layui-timeline-content layui-text">
+          <div class="layui-timeline-title" style="color:#fff">
+            <time datetime="2017-11-13T02:02:00.000Z">2017-11-13</time>
+          </div>
+          <h1 class="title">
+            <a style="text-decoration: none;" href="/syfight/2017/11/13/游呗之旅新手帮助/">游呗之旅新手帮助</a>
+          </h1>
         </div>
-      </article>
+      </li>
     
+      <li class="layui-timeline-item">
+        <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+        <div class="layui-timeline-content layui-text">
+          <div class="layui-timeline-title" style="color:#fff">
+            <time datetime="2017-11-08T02:48:00.000Z">2017-11-08</time>
+          </div>
+          <h1 class="title">
+            <a style="text-decoration: none;" href="/syfight/2017/11/08/abc/">java20个有用的程序片段</a>
+          </h1>
+        </div>
+      </li>
+    
+      <li class="layui-timeline-item">
+        <i class="layui-icon layui-anim layui-anim-rotate layui-anim-loop layui-timeline-axis">&#xe63e;</i>
+        <div class="layui-timeline-content layui-text">
+          <div class="layui-timeline-title" style="color:#fff">很久以前...</div>
+        </div>
+      </li>
+    </ul>
   </div>
 </div></div>
     <div class="clearfix"></div>
