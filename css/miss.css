@@ -145,14 +145,14 @@ figure.highlight .line {
     display: none;
   }
 }
-.archive .title a {
+.title a {
   position: relative;
 }
-.archive .title a:hover::after {
+.title a:hover::after {
   -webkit-transform: scaleX(1);
   transform: scaleX(1);
 }
-.archive .title a::after {
+.title a::after {
   content: "";
   position: absolute;
   width: 100%;

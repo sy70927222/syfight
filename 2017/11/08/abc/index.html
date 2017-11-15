@@ -8,7 +8,7 @@
 
   
   <meta name="description" content="1. 字符串有整型的相互转换12String a = String.valueOf(2);   //integer to numeric string  int i = Integer.parseInt(a); //numeric string to an int
-2. 向文件末尾添加内容12345" />
+2. 向文件末尾添加内容" />
   
 
   
@@ -79,6 +79,8 @@
     
       <li><a href="/syfight/archives">大事记</a></li>
     
+      <li><a href="/syfight/photos">相册</a></li>
+    
   </ul>
   <div class="clearfix"></div>
 </nav>
@@ -90,7 +92,7 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2017-11-08T02:48:00.000Z"><a href="/syfight/2017/11/08/abc/">2017-11-08</a></time>
+        <time datetime="2017-11-08T02:48:00.000Z"><a href="/syfight/2017/11/08/abc/">2017-11-08 10:48:00</a></time>
       
       
   
@@ -101,7 +103,8 @@
     <div class="entry">
       
         <h5 id="1-字符串有整型的相互转换"><a href="#1-字符串有整型的相互转换" class="headerlink" title="1. 字符串有整型的相互转换"></a>1. 字符串有整型的相互转换</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">String a = String.valueOf(2);   //integer to numeric string  </div><div class="line">int i = Integer.parseInt(a); //numeric string to an int</div></pre></td></tr></table></figure>
-<h5 id="2-向文件末尾添加内容"><a href="#2-向文件末尾添加内容" class="headerlink" title="2. 向文件末尾添加内容"></a>2. 向文件末尾添加内容</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">BufferedWriter out = null;  </div><div class="line">try &#123;  </div><div class="line">    out = new BufferedWriter(new FileWriter(”filename”, true));  </div><div class="line">    out.write(”aString”);  </div><div class="line">&#125; catch (IOException e) &#123;  </div><div class="line">    // error processing code  </div><div class="line">&#125; finally &#123;  </div><div class="line">    if (out != null) &#123;  </div><div class="line">        out.close();  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="2-向文件末尾添加内容"><a href="#2-向文件末尾添加内容" class="headerlink" title="2. 向文件末尾添加内容"></a>2. 向文件末尾添加内容</h5><a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">BufferedWriter out = null;  </div><div class="line">try &#123;  </div><div class="line">    out = new BufferedWriter(new FileWriter(”filename”, true));  </div><div class="line">    out.write(”aString”);  </div><div class="line">&#125; catch (IOException e) &#123;  </div><div class="line">    // error processing code  </div><div class="line">&#125; finally &#123;  </div><div class="line">    if (out != null) &#123;  </div><div class="line">        out.close();  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h5 id="3-得到当前方法的名字-b-size"><a href="#3-得到当前方法的名字-b-size" class="headerlink" title="3. 得到当前方法的名字[/b][/size]"></a>3. 得到当前方法的名字[/b][/size]</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();</div></pre></td></tr></table></figure>
 <h5 id="4-转字符串到日期"><a href="#4-转字符串到日期" class="headerlink" title="4. 转字符串到日期"></a>4. 转字符串到日期</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">java.util.Date = java.text.DateFormat.getDateInstance().parse(date String);</div><div class="line">或者是：</div><div class="line"></div><div class="line">SimpleDateFormat format = new SimpleDateFormat( &quot;dd.MM.yyyy&quot; );  </div><div class="line">Date date = format.parse( myString );</div></pre></td></tr></table></figure>
 <h5 id="5-使用JDBC链接Oracle"><a href="#5-使用JDBC链接Oracle" class="headerlink" title="5. 使用JDBC链接Oracle"></a>5. 使用JDBC链接Oracle</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">public class OracleJdbcTest  </div><div class="line">&#123;  </div><div class="line">    String driverClass = &quot;oracle.jdbc.driver.OracleDriver&quot;;  </div><div class="line"></div><div class="line">    Connection con;  </div><div class="line"></div><div class="line">    public void init(FileInputStream fs) throws ClassNotFoundException, SQLException, FileNotFoundException, IOException  </div><div class="line">    &#123;  </div><div class="line">        Properties props = new Properties();  </div><div class="line">        props.load(fs);  </div><div class="line">        String url = props.getProperty(&quot;db.url&quot;);  </div><div class="line">        String userName = props.getProperty(&quot;db.user&quot;);  </div><div class="line">        String password = props.getProperty(&quot;db.password&quot;);  </div><div class="line">        Class.forName(driverClass);  </div><div class="line"></div><div class="line">        con=DriverManager.getConnection(url, userName, password);  </div><div class="line">    &#125;  </div><div class="line"></div><div class="line">    public void fetch() throws SQLException, IOException  </div><div class="line">    &#123;  </div><div class="line">        PreparedStatement ps = con.prepareStatement(&quot;select SYSDATE from dual&quot;);  </div><div class="line">        ResultSet rs = ps.executeQuery();  </div><div class="line"></div><div class="line">        while (rs.next())  </div><div class="line">        &#123;  </div><div class="line">            // do the thing you do  </div><div class="line">        &#125;  </div><div class="line">        rs.close();  </div><div class="line">        ps.close();  </div><div class="line">    &#125;  </div><div class="line"></div><div class="line">    public static void main(String[] args)  </div><div class="line">    &#123;  </div><div class="line">        OracleJdbcTest test = new OracleJdbcTest();  </div><div class="line">        test.init();  </div><div class="line">        test.fetch();  </div><div class="line">    &#125;  </div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -143,7 +146,6 @@
     <a href="/syfight/tags/java/">java</a>
   </div>
 
-        <!-- partial('post/share') -->
       <div class="clearfix"></div>
     </footer>
   </div>
