@@ -124,6 +124,10 @@ function setCanvasSize() {
     $('#con').css('height',HEIGHT);
     if(WIDTH>900){
         $("#sidebar").css("left","0px");
+        $(".is").addClass("open");
+        $(".is").css("left","");
+        $("#link").css("display","");
+        $(".mask").removeClass("in");
     }else{
         $("#sidebar").css("left","");
     }
