@@ -31,7 +31,9 @@
   <link rel="alternate" href="/syfight/atom.xml" title="顾里°" type="application/atom+xml">
   <link rel="stylesheet" href="/syfight/css/style.css" media="screen" type="text/css">
   <link rel="stylesheet" href="/syfight/css/miss.css" media="screen" type="text/css">
+  <link rel="stylesheet" href="/syfight/css/share.css" media="screen" type="text/css">
   <link rel="stylesheet" href="/syfight/layui/css/layui.css" media="screen" type="text/css">
+  <link href="http://cdn.bootcss.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet">
   <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 
 
@@ -52,7 +54,8 @@
     <h1><a href="/syfight/">顾里°</a></h1>
 </div>
 
-  <ul id="nav" class="layui-nav layui-nav-tree layui-bg-cyan layui-inline" lay-filter="demo">
+  
+<ul id="nav" class="layui-nav layui-nav-tree layui-bg-cyan layui-inline" lay-filter="demo">
     <li class="layui-nav-item">
         <a href="/syfight"><i class="layui-icon">&#xe68e;</i>首页</a>
     </li>
@@ -135,8 +138,18 @@
     
     <footer>
         <div class="alignright">
-          
-          <a href='javascript:void(0)' class="share-link bdsharebuttonbox" data-cmd="more">分享</a>
+            <div id="ss_menu">
+                <div class="child1"><i class="fa fa-qq"></i></div>
+                <div class="child2"><i class="fa fa-weibo"></i></div>
+                <div class="child3"><i class="fa fa-weixin"></i></div>
+                <div class="child4"><i class="fa fa-renren"></i></div>
+                <div class="menu">
+                    <div class="share" id="ss_toggle" data-rot="180">
+                        <div class="circle"></div>
+                        <div class="bar"></div>
+                    </div>
+                </div>
+            </div>
         </div>
         
   
@@ -173,8 +186,6 @@
 <!--<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"16"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>--></footer>
 </div>
   <script src="/syfight/js/jquery.js"></script>
-<script src="/syfight/js/jquery.imagesloaded.min.js"></script>
-<script src="/syfight/js/gallery.js"></script>
 <script src="/syfight/fancybox/jquery.fancybox.pack.js"></script>
 
 
@@ -201,5 +212,6 @@
 <canvas id="canvas" style="position: fixed;top:0;left:0px;"></canvas>
 <script src="/syfight/js/miss.js"></script>
 <script src="/syfight/js/util.js"></script>
+<script src="/syfight/js/share.js"></script>
 </body>
 </html>

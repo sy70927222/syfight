@@ -474,6 +474,7 @@ article footer .categories,
 article footer .tags {
   position: relative;
   padding-left: 25px;
+  width: 65%;
   margin: 5px 0;
 }
 article footer .categories:before,
