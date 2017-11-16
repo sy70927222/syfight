@@ -37,4 +37,14 @@ $(function(){
             }
         }
     }
+    $('.fx').click(function () {
+        var type= $(this).attr("data-type");
+        var url= $(this).attr("data-url");
+        var title= $(this).attr("data-title");
+
+        if(type=="qzone") window.open("http://connect.qq.com/widget/shareqq/index.html?url="+url+"&title="+title+"—顾里°&pic=https://sy70927222.github.io/syfight/images/head/1.gif");
+        if(type=="xinlang")window.open("http://service.weibo.com/share/share.php?url="+url+"&title="+title+"—顾里°&pic=https://sy70927222.github.io/syfight/images/head/1.gif");
+        if(type=="weixin")alert("博主很懒，微信分享暂不支持");
+        if(type=="rr")window.open("http://www.douban.com/recommend/?url=" + url + "&title=" + title + "—顾里°&image=https://sy70927222.github.io/syfight/images/head/1.gif");
+    })
 });
