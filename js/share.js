@@ -59,7 +59,7 @@ $(function(){
         layer.open({
             type: '1'
             ,title: '扫一扫 分享微信'
-            ,content: '<div id="qrcode" style="padding:50px;"></div>'
+            ,content: '<div id="qrcode" style="padding:50px;"></div><img width="50" height="50" style="position:relative;top:-125px;left:75px;" src="/syfight/images/head/1.gif" class="layui-circle">'
             ,area: ['200px', '280px']
             ,shadeClose: true
             ,anim: 1
