@@ -1,5 +1,5 @@
 $(function(){
-    
+
     //导航
     $(".is").on("click",function(){
         var res=$(".is").hasClass('open');

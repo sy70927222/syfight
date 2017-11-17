@@ -44,7 +44,35 @@ $(function(){
 
         if(type=="qzone") window.open("http://connect.qq.com/widget/shareqq/index.html?url="+url+"&title="+title+"—顾里°&pic=https://sy70927222.github.io/syfight/images/head/1.gif");
         if(type=="xinlang")window.open("http://service.weibo.com/share/share.php?url="+url+"&title="+title+"—顾里°&pic=https://sy70927222.github.io/syfight/images/head/1.gif");
-        if(type=="weixin")alert("博主很懒，微信分享暂不支持");
+        if(type=="weixin") {
+            // var oOpts={
+            //     appId:"222222",
+            //     redirectURI:"http://yousite.com/qc_back.html"}
+            // QC.Login.showPopup(oOpts)
+
+            qrcode(url);
+        }
         if(type=="rr")window.open("http://www.douban.com/recommend/?url=" + url + "&title=" + title + "—顾里°&image=https://sy70927222.github.io/syfight/images/head/1.gif");
     })
+
+    var qrcode = function(url){
+        layer.open({
+            type: '1'
+            ,title: '扫一扫 分享微信'
+            ,content: '<div id="qrcode" style="padding:50px;"></div>'
+            ,area: ['200px', '280px']
+            ,shadeClose: true
+            ,anim: 1
+            ,move: false
+            ,resize: false
+            ,offset: '100px'
+            ,success: function(){
+                var qrcode = new QRCode(document.getElementById("qrcode"), {
+                    width : 100,//设置宽高
+                    height : 100
+                });
+                qrcode.makeCode(url);
+            }
+        });
+    }
 });
