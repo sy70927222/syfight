@@ -45,11 +45,6 @@ $(function(){
         if(type=="qzone") window.open("http://connect.qq.com/widget/shareqq/index.html?url="+url+"&title="+title+"—顾里°&pic=https://sy70927222.github.io/syfight/images/head/1.gif");
         if(type=="xinlang")window.open("http://service.weibo.com/share/share.php?url="+url+"&title="+title+"—顾里°&pic=https://sy70927222.github.io/syfight/images/head/1.gif");
         if(type=="weixin") {
-            // var oOpts={
-            //     appId:"222222",
-            //     redirectURI:"http://yousite.com/qc_back.html"}
-            // QC.Login.showPopup(oOpts)
-
             qrcode(url);
         }
         if(type=="rr")window.open("http://www.douban.com/recommend/?url=" + url + "&title=" + title + "—顾里°&image=https://sy70927222.github.io/syfight/images/head/1.gif");

@@ -176,6 +176,12 @@ figure.highlight .line {
   display: list-item;
   transform: rotate(180deg);
 }
+.qqlogin {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 50;
+}
 @-moz-keyframes colorChange {
   0%, 100% {
     opacity: 0;
