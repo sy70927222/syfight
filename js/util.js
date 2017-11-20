@@ -24,13 +24,6 @@ $(function(){
         $("#link").css("display","block");
     });
 
-    $(".qqlogin").click(function(){
-        alert($(this).attr("data-url"));
-        var oOpts={
-            appId:"1106466721",
-            redirectURI:$(this).attr("data-url")};
-        QC.Login.showPopup();
-    });
     //回到顶部
     $( "#top").click( function () {
         $( "#con").animate({ "scrollTop" : 0 }, 1000);
