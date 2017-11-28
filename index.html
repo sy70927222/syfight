@@ -117,124 +117,53 @@
     </header>
     <div class="entry">
       
-        <h5 id="基本指令"><a href="#基本指令" class="headerlink" title="基本指令"></a>基本指令</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">docker pull 				//安装镜像</div><div class="line">service docker restart		//服务重启</div><div class="line">docker ps -a 				//全局容器运行状态查看</div><div class="line">docker images				//镜像查看</div><div class="line">docker restart 				//重启容器</div></pre></td></tr></table></figure>
-<h5 id="MySql-主从容器配置及同步"><a href="#MySql-主从容器配置及同步" class="headerlink" title="MySql 主从容器配置及同步"></a>MySql 主从容器配置及同步</h5><ol>
-<li><p>创建mysql-master服务器配置及数据目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir /home/zhumisi/mysql/master/conf</div><div class="line">mkdir /home/zhumisi/mysql/master/data</div></pre></td></tr></table></figure>
+        <h2 id="基本指令"><a href="#基本指令" class="headerlink" title="基本指令"></a>基本指令</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">docker pull 				//安装镜像</div><div class="line">service docker restart		//服务重启</div><div class="line">docker ps -a 				//全局容器运行状态查看</div><div class="line">docker images				//镜像查看</div><div class="line">docker restart 				//重启容器</div></pre></td></tr></table></figure>
+<h2 id="MySql-主从容器配置及同步"><a href="#MySql-主从容器配置及同步" class="headerlink" title="MySql 主从容器配置及同步"></a>MySql 主从容器配置及同步</h2><p>1.创建mysql-master服务器配置及数据目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir /home/zhumisi/mysql/master/conf</div><div class="line">mkdir /home/zhumisi/mysql/master/data</div></pre></td></tr></table></figure></p>
+<p>2.创建mysql-slave服务器配置及数据目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir /home/zhumisi/mysql/slave/conf</div><div class="line">mkdir /home/zhumisi/mysql/slave/data</div></pre></td></tr></table></figure></p>
+<ul>
+<li><p>master配置目录下手动创建my.cnf文件,配置如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">[mysqld]</div><div class="line">server_id = 1</div><div class="line">log-bin= mysql-bin</div><div class="line">binlog-format=ROW</div><div class="line">//</div><div class="line">binlog-do-db=bfftrip</div><div class="line">replicate-ignore-db=mysql</div><div class="line">replicate-ignore-db=sys</div><div class="line">replicate-ignore-db=information_schema</div><div class="line">replicate-ignore-db=performance_schema</div><div class="line">//</div><div class="line">read-only=0</div><div class="line">relay_log=mysql-relay-bin</div><div class="line">log-slave-updates=on</div><div class="line">auto-increment-offset=1</div><div class="line">auto-increment-increment=2</div><div class="line">//</div><div class="line">!includedir /etc/mysql/conf.d/</div><div class="line">!includedir /etc/mysql/mysql.conf.d/</div></pre></td></tr></table></figure>
 </li>
-<li><p>创建mysql-slave服务器配置及数据目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">mkdir /home/zhumisi/mysql/slave/conf</div><div class="line">mkdir /home/zhumisi/mysql/slave/data</div></pre></td></tr></table></figure>
+<li><p>slave配置目录下手动创建my.cnf文件,配置如下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">[mysqld]</div><div class="line">server_id = 2</div><div class="line">log-bin= mysql-bin</div><div class="line">//</div><div class="line">binlog-do-db=bfftrip</div><div class="line">replicate-ignore-db=mysql</div><div class="line">replicate-ignore-db=sys</div><div class="line">replicate-ignore-db=information_schema</div><div class="line">replicate-ignore-db=performance_schema</div><div class="line">//</div><div class="line">read-only=0</div><div class="line">relay_log=mysql-relay-bin</div><div class="line">log-slave-updates=on</div><div class="line">auto-increment-offset=2</div><div class="line">auto-increment-increment=2</div><div class="line">//</div><div class="line">!includedir /etc/mysql/conf.d/</div><div class="line">!includedir /etc/mysql/mysql.conf.d/</div></pre></td></tr></table></figure>
 </li>
-</ol>
-<p>master配置目录下手动创建my.cnf文件,配置如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">[mysqld]</div><div class="line">server_id = 1</div><div class="line">log-bin= mysql-bin</div><div class="line">binlog-format=ROW</div><div class="line">//</div><div class="line">binlog-do-db=bfftrip</div><div class="line">replicate-ignore-db=mysql</div><div class="line">replicate-ignore-db=sys</div><div class="line">replicate-ignore-db=information_schema</div><div class="line">replicate-ignore-db=performance_schema</div><div class="line">//</div><div class="line">read-only=0</div><div class="line">relay_log=mysql-relay-bin</div><div class="line">log-slave-updates=on</div><div class="line">auto-increment-offset=1</div><div class="line">auto-increment-increment=2</div><div class="line">//</div><div class="line">!includedir /etc/mysql/conf.d/</div><div class="line">!includedir /etc/mysql/mysql.conf.d/</div></pre></td></tr></table></figure></p>
-<p>slave配置目录下手动创建my.cnf文件,配置如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">[mysqld]</div><div class="line">server_id = 2</div><div class="line">log-bin= mysql-bin</div><div class="line">//</div><div class="line">binlog-do-db=bfftrip</div><div class="line">replicate-ignore-db=mysql</div><div class="line">replicate-ignore-db=sys</div><div class="line">replicate-ignore-db=information_schema</div><div class="line">replicate-ignore-db=performance_schema</div><div class="line">//</div><div class="line">read-only=0</div><div class="line">relay_log=mysql-relay-bin</div><div class="line">log-slave-updates=on</div><div class="line">auto-increment-offset=2</div><div class="line">auto-increment-increment=2</div><div class="line">//</div><div class="line">!includedir /etc/mysql/conf.d/</div><div class="line">!includedir /etc/mysql/mysql.conf.d/</div></pre></td></tr></table></figure></p>
-<ol>
-<li><p>安装mysql镜像:版本号</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker pull mysql:5.7.18  </div><div class="line">service docker restart	//服务器重启</div></pre></td></tr></table></figure>
+</ul>
+<p>3.安装mysql镜像:版本号<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker pull mysql:5.7.18  </div><div class="line">service docker restart	//服务器重启</div></pre></td></tr></table></figure></p>
+<p>4.运行mysql-master主服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">docker run -d --restart always --name mysql-master \</div><div class="line">    -v /home/zhumisi/mysql/master/conf:/etc/mysql/conf.d \</div><div class="line">    -v /home/zhumisi/mysql/master/data:/var/lib/mysql \</div><div class="line">    -p 3307:3306 \</div><div class="line">    -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7.18</div></pre></td></tr></table></figure></p>
+<p>5.运行mysql-slave从服务器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">docker run -d --restart always --name mysql-slave \</div><div class="line">    -v /home/zhumisi/mysql/slave/conf:/etc/mysql/conf.d \</div><div class="line">    -v /home/zhumisi/mysql/slave/data:/var/lib/mysql \</div><div class="line">    -p 3308:3306 \</div><div class="line">    -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7.18</div></pre></td></tr></table></figure></p>
+<p>6..NetworkSettings.IPAddress=0ae5cee7cc17通过ID查看容器端口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker inspect --format=&apos;&#123;&#123;.NetworkSettings.IPAddress&#125;&#125;&apos;</div></pre></td></tr></table></figure></p>
+<p>7.进入主或从服务器目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker exec -it mysql-master bash</div><div class="line">docker exec -it mysql-slave bash</div></pre></td></tr></table></figure></p>
+<p>8.启动mysql命令，刚在创建窗口时我们把密码设置为：123456<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql -u root -p</div></pre></td></tr></table></figure></p>
+<p>9.mysql-master服务器创建主从同步用户<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GRANT REPLICATION SLAVE ON *.* to &apos;bfftrip&apos;@&apos;%&apos; identified by &apos;123456&apos;;</div></pre></td></tr></table></figure></p>
+<p>10.mysql-master服务器创建canal用户<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GRANT REPLICATION SLAVE ON *.* to &apos;canal&apos;@&apos;%&apos; identified by &apos;canal&apos;;</div></pre></td></tr></table></figure></p>
+<p>11.mysql-master服务器查看master运行状态 获取偏移量及binlog日志文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">show master status</div></pre></td></tr></table></figure></p>
+<p>12.mysql-slave服务器设置主库链接<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">change master to master_host=&apos;192.168.226.128&apos;, master_user=&apos;bfftrip&apos;, master_password=&apos;123456&apos;, master_port=3307, master_log_file=&apos;mysql-bin.000004&apos;, master_log_pos=445, master_connect_retry=30;</div></pre></td></tr></table></figure></p>
+<p>13.mysql-slave服务器查看主从同步状态<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">show slave status \G;</div></pre></td></tr></table></figure></p>
+<h2 id="Docker-配置JDK环境变量"><a href="#Docker-配置JDK环境变量" class="headerlink" title="Docker 配置JDK环境变量"></a>Docker 配置JDK环境变量</h2><p>1.Ubuntu打开配置文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$sudo gedit ~/.bashrc</div></pre></td></tr></table></figure></p>
+<ul>
+<li>在文件末尾加上以下内容（JDK所解压的路径）<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">export JAVA_HOME=/home/zhumisi/java/java1.8</div><div class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre</div><div class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib  </div><div class="line">export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH</div></pre></td></tr></table></figure>
 </li>
-<li><p>运行mysql-master主服务器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">docker run -d --restart always --name mysql-master \</div><div class="line">    -v /home/zhumisi/mysql/master/conf:/etc/mysql/conf.d \</div><div class="line">    -v /home/zhumisi/mysql/master/data:/var/lib/mysql \</div><div class="line">    -p 3307:3306 \</div><div class="line">    -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7.18</div></pre></td></tr></table></figure>
-</li>
-<li><p>运行mysql-slave从服务器</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">docker run -d --restart always --name mysql-slave \</div><div class="line">    -v /home/zhumisi/mysql/slave/conf:/etc/mysql/conf.d \</div><div class="line">    -v /home/zhumisi/mysql/slave/data:/var/lib/mysql \</div><div class="line">    -p 3308:3306 \</div><div class="line">    -e MYSQL_ROOT_PASSWORD=123456 -d mysql:5.7.18</div></pre></td></tr></table></figure>
-</li>
-<li><p>.NetworkSettings.IPAddress=0ae5cee7cc17通过ID查看容器端口</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker inspect --format=&apos;&#123;&#123;.NetworkSettings.IPAddress&#125;&#125;&apos;</div></pre></td></tr></table></figure>
-</li>
-<li><p>进入主或从服务器目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">docker exec -it mysql-master bash</div><div class="line">docker exec -it mysql-slave bash</div></pre></td></tr></table></figure>
-</li>
-<li><p>启动mysql命令，刚在创建窗口时我们把密码设置为：123456</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mysql -u root -p</div></pre></td></tr></table></figure>
-</li>
-<li><p>mysql-master服务器创建主从同步用户</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GRANT REPLICATION SLAVE ON *.* to &apos;bfftrip&apos;@&apos;%&apos; identified by &apos;123456&apos;;</div></pre></td></tr></table></figure>
-</li>
-<li><p>mysql-master服务器创建canal用户</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">GRANT REPLICATION SLAVE ON *.* to &apos;canal&apos;@&apos;%&apos; identified by &apos;canal&apos;;</div></pre></td></tr></table></figure>
-</li>
-<li><p>mysql-master服务器查看master运行状态 获取偏移量及binlog日志文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">show master status</div></pre></td></tr></table></figure>
-</li>
-<li><p>mysql-slave服务器设置主库链接</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">change master to master_host=&apos;192.168.226.128&apos;, master_user=&apos;bfftrip&apos;, master_password=&apos;123456&apos;, master_port=3307, master_log_file=&apos;mysql-bin.000004&apos;, master_log_pos=445, master_connect_retry=30;</div></pre></td></tr></table></figure>
-</li>
-<li><p>mysql-slave服务器查看主从同步状态</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">show slave status \G;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h5 id="Docker-配置JDK环境变量"><a href="#Docker-配置JDK环境变量" class="headerlink" title="Docker 配置JDK环境变量"></a>Docker 配置JDK环境变量</h5><ol>
-<li>Ubuntu打开配置文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$sudo gedit ~/.bashrc</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<p>在文件末尾加上以下内容（JDK所解压的路径）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">export JAVA_HOME=/home/zhumisi/java/java1.8</div><div class="line">export JRE_HOME=$&#123;JAVA_HOME&#125;/jre</div><div class="line">export CLASSPATH=.:$&#123;JAVA_HOME&#125;/lib:$&#123;JRE_HOME&#125;/lib  </div><div class="line">export PATH=$&#123;JAVA_HOME&#125;/bin:$PATH</div></pre></td></tr></table></figure></p>
-<ol>
-<li><p>执行文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source ~/.bashrc</div></pre></td></tr></table></figure>
-</li>
-<li><p>JDK是否安装成功</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -version</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h5 id="Canal的相关部署"><a href="#Canal的相关部署" class="headerlink" title="Canal的相关部署"></a>Canal的相关部署</h5><ol>
-<li><p>下载Canal</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget https://github.com/alibaba/canal/releases/download/canal-1.0.24/canal.deployer-1.0.24.tar.gz</div></pre></td></tr></table></figure>
-</li>
-<li><p>创建Canal目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir /home/zhumisi/canal</div></pre></td></tr></table></figure>
-</li>
-<li><p>canal.deployer-1.0.24.tar.gz压缩包解压到指定路径下的canal里</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar zxvf canal.deployer-1.0.24.tar.gz  -C /home/zhumisi/canal</div></pre></td></tr></table></figure>
-</li>
-<li><p>启动Canal</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh /home/zhumisi/canal/bin/startup.sh</div></pre></td></tr></table></figure>
-</li>
-<li><p>关闭canal</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh /home/zhumisi/canal/bin/stop.sh</div></pre></td></tr></table></figure>
-</li>
-<li><p>查看相关日志</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cat /home/zhumisi/canal/logs/canal/canal.log</div><div class="line">cat /home/zhumisi/canal/logs/example/example.log</div></pre></td></tr></table></figure>
-</li>
-<li><p>Canal配置文件查看</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /home/zhumisi/canal/conf/canal.properties</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h5 id="Kafka的相关部署"><a href="#Kafka的相关部署" class="headerlink" title="Kafka的相关部署"></a>Kafka的相关部署</h5><ol>
-<li><p>安装ZK镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull wurstmeister/zookeeper</div></pre></td></tr></table></figure>
-</li>
-<li><p>安装Kafka镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull wurstmeister/kafka</div></pre></td></tr></table></figure>
-</li>
-<li><p>启动zookeeper容器运行ZK</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d --name zookeeper --publish 2181:2181 --volume /etc/localtime:/etc/localtime zookeeper:latest</div></pre></td></tr></table></figure>
-</li>
-</ol>
+</ul>
+<p>2.执行文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">source ~/.bashrc</div></pre></td></tr></table></figure></p>
+<p>3.JDK是否安装成功<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">java -version</div></pre></td></tr></table></figure></p>
+<h2 id="Canal的相关部署"><a href="#Canal的相关部署" class="headerlink" title="Canal的相关部署"></a>Canal的相关部署</h2><p>1.下载Canal<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget https://github.com/alibaba/canal/releases/download/canal-1.0.24/canal.deployer-1.0.24.tar.gz</div></pre></td></tr></table></figure></p>
+<p>2.创建Canal目录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">mkdir /home/zhumisi/canal</div></pre></td></tr></table></figure></p>
+<p>3.canal.deployer-1.0.24.tar.gz压缩包解压到指定路径下的canal里<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar zxvf canal.deployer-1.0.24.tar.gz  -C /home/zhumisi/canal</div></pre></td></tr></table></figure></p>
+<p>4.启动Canal<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh /home/zhumisi/canal/bin/startup.sh</div></pre></td></tr></table></figure></p>
+<p>5.关闭canal<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sh /home/zhumisi/canal/bin/stop.sh</div></pre></td></tr></table></figure></p>
+<p>6.查看相关日志<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cat /home/zhumisi/canal/logs/canal/canal.log</div><div class="line">cat /home/zhumisi/canal/logs/example/example.log</div></pre></td></tr></table></figure></p>
+<p>7.Canal配置文件查看<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /home/zhumisi/canal/conf/canal.properties</div></pre></td></tr></table></figure></p>
+<h2 id="Kafka的相关部署"><a href="#Kafka的相关部署" class="headerlink" title="Kafka的相关部署"></a>Kafka的相关部署</h2><p>1.安装ZK镜像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull wurstmeister/zookeeper</div></pre></td></tr></table></figure></p>
+<p>2.安装Kafka镜像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull wurstmeister/kafka</div></pre></td></tr></table></figure></p>
+<p>3.启动zookeeper容器运行ZK<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d --name zookeeper --publish 2181:2181 --volume /etc/localtime:/etc/localtime zookeeper:latest</div></pre></td></tr></table></figure></p>
 <p>4.启动kafka容器运行Kafka<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">docker run -d --name kafka \</div><div class="line">--publish 9092:9092 --link zookeeper \</div><div class="line">-e KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181 \</div><div class="line">-e KAFKA_ADVERTISED_HOST_NAME=192.168.226.128 \</div><div class="line">-e KAFKA_ADVERTISED_PORT=9092 \</div><div class="line">-v /etc/localtime:/etc/localtime \</div><div class="line">wurstmeister/kafka:latest</div></pre></td></tr></table></figure></p>
-<ol>
-<li><p>执行Docker ps，找到kafka的Container ID，进入容器内部：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker exec -it $&#123;CONTAINER ID&#125; /bin/bash	//CONTAINER ID:0f0aec478812</div></pre></td></tr></table></figure>
-</li>
-<li><p>移动到kafka文件目录(注意:opt目录下kafka文件夹名称会根据版本不同而不同，所以可以事先移动到opt目录dir查看以下)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd opt/kafka_2.12-1.0.0/</div></pre></td></tr></table></figure>
-</li>
-<li><p>创建一个bfftrip 的主题</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bin/kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic bfftrip</div></pre></td></tr></table></figure>
-</li>
-<li><p>运行一个消息生产者</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bin/kafka-console-producer.sh --broker-list localhost:9092 --topic bfftrip</div></pre></td></tr></table></figure>
-</li>
-<li><p>运行一个消息消费者</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bin/kafka-console-consumer.sh --zookeeper zookeeper:2181 --topic bfftrip --from-beginning</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h5 id="Mongodb数据库的部署"><a href="#Mongodb数据库的部署" class="headerlink" title="Mongodb数据库的部署"></a>Mongodb数据库的部署</h5><ol>
-<li><p>安装Mongo镜像</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull mongo:3.2</div></pre></td></tr></table></figure>
-</li>
-<li><p>启动mongodb容器运行Mongo</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d --name mongodb -p 27017:27017 -v $PWD/db:/data/db -d mongo:3.2</div></pre></td></tr></table></figure></li>
-</ol>
+<p>5.执行Docker ps，找到kafka的Container ID，进入容器内部：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker exec -it $&#123;CONTAINER ID&#125; /bin/bash	//CONTAINER ID:0f0aec478812</div></pre></td></tr></table></figure></p>
+<p>6.移动到kafka文件目录(注意:opt目录下kafka文件夹名称会根据版本不同而不同，所以可以事先移动到opt目录dir查看以下)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd opt/kafka_2.12-1.0.0/</div></pre></td></tr></table></figure></p>
+<p>7.创建一个bfftrip 的主题<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bin/kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic bfftrip</div></pre></td></tr></table></figure></p>
+<p>8.运行一个消息生产者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bin/kafka-console-producer.sh --broker-list localhost:9092 --topic bfftrip</div></pre></td></tr></table></figure></p>
+<p>9.运行一个消息消费者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bin/kafka-console-consumer.sh --zookeeper zookeeper:2181 --topic bfftrip --from-beginning</div></pre></td></tr></table></figure></p>
+<h2 id="Mongodb数据库的部署"><a href="#Mongodb数据库的部署" class="headerlink" title="Mongodb数据库的部署"></a>Mongodb数据库的部署</h2><p>1.安装Mongo镜像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker pull mongo:3.2</div></pre></td></tr></table></figure></p>
+<p>2.启动mongodb容器运行Mongo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">docker run -d --name mongodb -p 27017:27017 -v $PWD/db:/data/db -d mongo:3.2</div></pre></td></tr></table></figure></p>
 
       
     </div>
