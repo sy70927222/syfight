@@ -1,19 +1,19 @@
 $(function(){
-    var toggle = $('#ss_toggle');
-    var menu = $('#ss_menu');
+    var menu=$("#ss_menu");
     var rot;
-    $('#ss_toggle').on('click', function () {
+    $('.ss_toggle').on('click', function () {
+        menu=$(this).parents("#ss_menu");
         rot = parseInt($(this).data('rot')) - 180;
         menu.css('transform', 'rotate(' + rot + 'deg)');
         menu.css('webkitTransform', 'rotate(' + rot + 'deg)');
         if (rot / 180 % 2 == 0) {
-            toggle.parent().addClass('ss_active');
-            toggle.addClass('close');
-            jud(true);
+            $(this).parent().addClass('ss_active');
+            $(this).addClass('close');
+            jud(this,true);
         } else {
-            toggle.parent().removeClass('ss_active');
-            toggle.removeClass('close');
-            jud(false);
+            $(this).parent().removeClass('ss_active');
+            $(this).removeClass('close');
+            jud(this,false);
         }
         $(this).data('rot', rot);
     });
@@ -24,16 +24,17 @@ $(function(){
             $('#ss_menu div i').removeClass('ss_animate');
         }
     });
-    var jud=function (flag){
+    var jud=function (a,flag){
+        a=$(a).parents("#ss_menu");
         if(flag){
             for(var i=1;i<=4;i++){
-                $("#nth-child"+i).fadeIn(500);
-                $(".child"+i).addClass("nth-child"+i);
+                $(a).find(".child"+i).addClass("nth-child"+i);
+                $(a).find(".nth-child"+i).fadeIn(500);
             }
         }else{
             for(var i=1;i<=4;i++){
-                $("#nth-child"+i).fadeOut(500);
-                $(".child"+i).removeClass("nth-child"+i);
+                $(a).find(".child"+i).removeClass("nth-child"+i);
+                $(a).find(".nth-child"+i).fadeOut(500);
             }
         }
     }
